@@ -1,11 +1,6 @@
 language: python
-
-
 install:
-  make deps
-
+  - make deps
 script:
-  make test
-
-lint:
-  make lint
+  - make test
+  - make lint
