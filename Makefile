@@ -11,7 +11,7 @@ run:
 	PYTHONPATH=. FLASK_APP=hello_world flask run
 
 test:
-	$ PYTHONPATH=. py.test --verbose -s
+	PYTHONPATH=. py.test --verbose -s
 
 docker_build:
 			docker build -t hello-world-printer .
@@ -30,3 +30,9 @@ docker_push: docker_build
 			docker tag hello-world-printer $(TAG); \
 			docker push $(TAG); \
 			docker logout;
+
+test_cov:
+	PYTHONPATH=. py.test --verbose -s --cov=.
+
+test_xunit:
+	PYTHONPATH=. py.test -s --cov=. --cov-report xml --junit-xml=test_results.xml
